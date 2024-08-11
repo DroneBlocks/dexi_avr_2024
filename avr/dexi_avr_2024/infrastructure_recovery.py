@@ -14,8 +14,18 @@ from rclpy.executors import ExternalShutdownException
 
 class InfrastructureRecovery(Node):
     def __init__(self):
-        super().__init__('avr_node')
+        super().__init__("avr_node")
         self.get_logger().info("InfrastructureRecovery Node is running")
+
+        self.april_tag_subscriber = self.create_subscription(
+            String,
+            "detections",
+            self.april_tag_callback,
+            10)
+        self.subscription
+
+    def april_tag_callback(self, msg):
+        self.get_logger().info(msg.data)
 
     
     

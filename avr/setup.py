@@ -20,7 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'infrastructure_recovery = dexi_avr_2024.infrastructure_recovery:main'
+            'infrastructure_recovery = dexi_avr_2024.infrastructure_recovery:main',
+            'mock_publisher = dexi_avr_2024.mock_publisher:main',
+            'mock_subscriber = dexi_avr_2024.mock_subscriber:main'
         ],
     },
 )
