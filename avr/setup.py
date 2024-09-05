@@ -1,3 +1,5 @@
+import os
+from glob import glob
 from setuptools import find_packages, setup
 
 package_name = 'dexi_avr_2024'
@@ -10,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*')))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -22,7 +25,8 @@ setup(
         'console_scripts': [
             'infrastructure_recovery = dexi_avr_2024.infrastructure_recovery:main',
             'mock_publisher = dexi_avr_2024.mock_publisher:main',
-            'mock_subscriber = dexi_avr_2024.mock_subscriber:main'
+            'mock_subscriber = dexi_avr_2024.mock_subscriber:main',
+            'mock_led_service = dexi_avr_2024.mock_led_service:main'
         ],
     },
 )

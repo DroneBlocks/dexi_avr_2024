@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="dexi_avr_2024" namespace="dexi" exec="mock_led_service" output="screen" />
+    <node pkg="dexi_avr_2024" exec="mock_publisher" output="screen" />
+</launch>
