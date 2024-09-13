@@ -1,4 +1,17 @@
 <launch>
-    <node pkg="dexi_avr_2024" namespace="dexi" exec="mock_led_service" output="screen" />
-    <node pkg="dexi_avr_2024" exec="mock_publisher" output="screen" />
+    <node pkg="dexi_avr_2024" namespace="dexi" exec="led_service" name="led_service" />
+    
+    <node pkg="dexi_avr_2024" namespace="dexi" exec="gpio_reader" name="gpio_input_22">
+        <param name="pin" value="22" />
+    </node>
+
+    <node pkg="dexi_avr_2024" namespace="dexi" exec="gpio_reader" name="gpio_input_24">
+        <param name="pin" value="24" />
+    </node>
+
+    <node pkg="dexi_avr_2024" namespace="dexi" exec="gpio_writer_service" name="gpio_writer_service">
+        <param name="gpio_outputs" value="[21, 23]" />
+    </node>
+
+    <node pkg="dexi_avr_2024" exec="mock_publisher" />
 </launch>

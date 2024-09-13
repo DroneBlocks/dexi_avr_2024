@@ -26,7 +26,9 @@ setup(
             'infrastructure_recovery = dexi_avr_2024.infrastructure_recovery:main',
             'mock_publisher = dexi_avr_2024.mock_publisher:main',
             'mock_subscriber = dexi_avr_2024.mock_subscriber:main',
-            'mock_led_service = dexi_avr_2024.mock_led_service:main'
+            'led_service = dexi_avr_2024.mock_led_service:main',
+            'gpio_reader = dexi_avr_2024.mock_gpio_reader:main',
+            'gpio_writer_service = dexi_avr_2024.mock_gpio_writer:main'
         ],
     },
 )
