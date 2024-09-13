@@ -1,0 +1,653 @@
+[
+    {
+        "id": "9d29740f7eb852c7",
+        "type": "tab",
+        "label": "DEXI AVR Drone Simulator",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b75fcb44bfa058eb",
+        "type": "ros2-websocket-server",
+        "url": "ws://172.17.0.2:9090"
+    },
+    {
+        "id": "7da660f07efdb098",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "615ec8d727afbeac",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "31cddb5056e5e044",
+        "type": "ui_group",
+        "name": "DEXI SIM",
+        "tab": "7da660f07efdb098",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e72096df4b8e2b32",
+        "type": "ros2-subscribe",
+        "z": "9d29740f7eb852c7",
+        "server": "b75fcb44bfa058eb",
+        "topicname": "/dexi/gpio_input_22",
+        "messagetype": "",
+        "x": 190,
+        "y": 460,
+        "wires": [
+            [
+                "966585e06a841abf",
+                "741f7880ed766164"
+            ]
+        ]
+    },
+    {
+        "id": "966585e06a841abf",
+        "type": "debug",
+        "z": "9d29740f7eb852c7",
+        "name": "Infrared Receiver",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "66a9558857ff7680",
+        "type": "ui_led",
+        "z": "9d29740f7eb852c7",
+        "order": 2,
+        "group": "31cddb5056e5e044",
+        "width": "6",
+        "height": "6",
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "",
+        "x": 610,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "741f7880ed766164",
+        "type": "function",
+        "z": "9d29740f7eb852c7",
+        "name": "change payload",
+        "func": "msg.payload = msg.payload.data\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 540,
+        "wires": [
+            [
+                "66a9558857ff7680"
+            ]
+        ]
+    },
+    {
+        "id": "33fe6f7e06960f8f",
+        "type": "comment",
+        "z": "9d29740f7eb852c7",
+        "name": "Subscribe to IR breakbeam topic - GPIO 22",
+        "info": "",
+        "x": 270,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "40ae0ccf5504db33",
+        "type": "inject",
+        "z": "9d29740f7eb852c7",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "14996fb6179a56bb"
+            ]
+        ]
+    },
+    {
+        "id": "14996fb6179a56bb",
+        "type": "led",
+        "z": "9d29740f7eb852c7",
+        "name": "White LED",
+        "color": "white",
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "1fab33f1536f80cf",
+                "23e3f62da0b71b44"
+            ]
+        ]
+    },
+    {
+        "id": "eccfba278d1cb9fd",
+        "type": "ros2-service-call",
+        "z": "9d29740f7eb852c7",
+        "server": "b75fcb44bfa058eb",
+        "x": 900,
+        "y": 460,
+        "wires": [
+            [
+                "46d542d14a1fc11f"
+            ]
+        ]
+    },
+    {
+        "id": "05e6d07d84a43a9d",
+        "type": "comment",
+        "z": "9d29740f7eb852c7",
+        "name": "Set LED Ring Color",
+        "info": "",
+        "x": 190,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "46d542d14a1fc11f",
+        "type": "debug",
+        "z": "9d29740f7eb852c7",
+        "name": "Response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "1fab33f1536f80cf",
+        "type": "debug",
+        "z": "9d29740f7eb852c7",
+        "name": "LED request",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1aecc282f17e02b1",
+        "type": "inject",
+        "z": "9d29740f7eb852c7",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "b205b7e6ca1ecdbd"
+            ]
+        ]
+    },
+    {
+        "id": "b205b7e6ca1ecdbd",
+        "type": "led",
+        "z": "9d29740f7eb852c7",
+        "name": "Black LED",
+        "color": "black",
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "1fab33f1536f80cf",
+                "23e3f62da0b71b44"
+            ]
+        ]
+    },
+    {
+        "id": "84c8f2b03a523b6f",
+        "type": "comment",
+        "z": "9d29740f7eb852c7",
+        "name": "Fire Laser - GPIO 21",
+        "info": "",
+        "x": 190,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "cffbfc7c5571d8bb",
+        "type": "write-gpio",
+        "z": "9d29740f7eb852c7",
+        "pinnumber": 21,
+        "pinstate": "true",
+        "stampheader": false,
+        "x": 540,
+        "y": 780,
+        "wires": [
+            [
+                "72397f05a113e7d4"
+            ]
+        ]
+    },
+    {
+        "id": "91519bab78a85384",
+        "type": "inject",
+        "z": "9d29740f7eb852c7",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 780,
+        "wires": [
+            [
+                "cffbfc7c5571d8bb"
+            ]
+        ]
+    },
+    {
+        "id": "e4850b17cafb2d3d",
+        "type": "link in",
+        "z": "9d29740f7eb852c7",
+        "name": "ros2 service",
+        "links": [
+            "23e3f62da0b71b44",
+            "72397f05a113e7d4"
+        ],
+        "x": 775,
+        "y": 460,
+        "wires": [
+            [
+                "eccfba278d1cb9fd"
+            ]
+        ]
+    },
+    {
+        "id": "23e3f62da0b71b44",
+        "type": "link out",
+        "z": "9d29740f7eb852c7",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "e4850b17cafb2d3d",
+            "c2b38569e2235f69"
+        ],
+        "x": 565,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "72397f05a113e7d4",
+        "type": "link out",
+        "z": "9d29740f7eb852c7",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "e4850b17cafb2d3d",
+            "c2b38569e2235f69"
+        ],
+        "x": 665,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "d5a0c3b89c6d0cb3",
+        "type": "inject",
+        "z": "9d29740f7eb852c7",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 840,
+        "wires": [
+            [
+                "130ab1f4397b9867"
+            ]
+        ]
+    },
+    {
+        "id": "130ab1f4397b9867",
+        "type": "write-gpio",
+        "z": "9d29740f7eb852c7",
+        "pinnumber": 21,
+        "pinstate": "false",
+        "stampheader": false,
+        "x": 540,
+        "y": 840,
+        "wires": [
+            [
+                "72397f05a113e7d4"
+            ]
+        ]
+    },
+    {
+        "id": "38018d2c2d2716ed",
+        "type": "ui_button",
+        "z": "9d29740f7eb852c7",
+        "name": "",
+        "group": "31cddb5056e5e044",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Turn Laser On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 380,
+        "y": 700,
+        "wires": [
+            [
+                "cffbfc7c5571d8bb"
+            ]
+        ]
+    },
+    {
+        "id": "b35b9e16429a6b2b",
+        "type": "comment",
+        "z": "9d29740f7eb852c7",
+        "name": "Read April Tag",
+        "info": "",
+        "x": 180,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "64f69b0922249366",
+        "type": "ros2-subscribe",
+        "z": "9d29740f7eb852c7",
+        "server": "b75fcb44bfa058eb",
+        "topicname": "/detections",
+        "messagetype": "apriltag_msgs/msg/AprilTagDetectionArray",
+        "x": 160,
+        "y": 1020,
+        "wires": [
+            [
+                "19d4aa7218d8a639",
+                "ed87b8977d16aedf"
+            ]
+        ]
+    },
+    {
+        "id": "19d4aa7218d8a639",
+        "type": "debug",
+        "z": "9d29740f7eb852c7",
+        "name": "April Tag Message",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "ed87b8977d16aedf",
+        "type": "function",
+        "z": "9d29740f7eb852c7",
+        "name": "get april tag id",
+        "func": "msg.payload = msg.payload.detections[0].id\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 1140,
+        "wires": [
+            [
+                "509ef6065a9b0733"
+            ]
+        ]
+    },
+    {
+        "id": "509ef6065a9b0733",
+        "type": "ui_text",
+        "z": "9d29740f7eb852c7",
+        "group": "31cddb5056e5e044",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "April Tag ID:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 550,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "7ddf1699a8a11615",
+        "type": "ui_button",
+        "z": "9d29740f7eb852c7",
+        "name": "",
+        "group": "31cddb5056e5e044",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Turn Laser Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 380,
+        "y": 900,
+        "wires": [
+            [
+                "130ab1f4397b9867"
+            ]
+        ]
+    }
+]
