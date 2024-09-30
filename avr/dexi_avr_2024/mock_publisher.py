@@ -29,13 +29,18 @@ class MockPublisher(Node):
     def april_tag_callback(self):
         tag = AprilTagDetection()
         tag.family = "36h11"
-        tag.id = random.randint(0, 10)
+        tag.id = random.randint(0, 11)
         tag.hamming = 0
         tag.goodness = 0.0
         tag.decision_margin = 30.0
 
         msg = AprilTagDetectionArray()
-        msg.detections = [tag]
+
+        # Every now and then let's send an empty detection array
+        if tag.id == 11:
+            msg.detections = []
+        else:
+            msg.detections = [tag]
         
         self.april_tag_publisher.publish(msg)
 
